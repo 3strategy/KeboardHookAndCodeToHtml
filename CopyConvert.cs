@@ -53,7 +53,13 @@ namespace KeboardHookAndCodeToHtml
     {
       originalText.Text = Clipboard.GetText();
 
-      var settings = new HTMLEmitterSettings().DisableIframe();//.DisableLineNumbers();
+      HTMLEmitterSettings settings;
+      settings = new HTMLEmitterSettings().DisableIframe();//.DisableLineNumbers();
+      if (checkBoxLineNumbers.Checked)
+        settings = new HTMLEmitterSettings().DisableIframe();
+      else
+        settings = new HTMLEmitterSettings().DisableIframe().DisableLineNumbers();
+      //This was not recently tested without the line numbers (which took alot of css effort to get to work)
       string convertedHtml = new CsharpColourer().ProcessSourceCode(originalText.Text, new HTMLEmitter(settings));
       int i = convertedHtml.IndexOf("<pre class=\"background\"") + 24;
       string embeddedHtml = "<div class=\"code, swiftly\"><pre><code>" + convertedHtml.Substring(i, convertedHtml.Length - i);
