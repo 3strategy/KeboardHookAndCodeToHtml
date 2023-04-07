@@ -13,8 +13,32 @@ namespace KeboardHookAndCodeToHtml
 {
   public partial class CopyConvert : Form
   {
+    private TextBox originalText;
+    private TextBox convertedText;
     public CopyConvert()
     {
+      //InitializeComponent();
+      Text = "Clipboard Converter";
+
+      // create original text box
+      originalText = new TextBox();
+      originalText.Dock = DockStyle.Top;
+      originalText.Multiline = true;
+      originalText.Height = 200;
+      originalText.ScrollBars = ScrollBars.Vertical;
+      //originalText.TextChanged += OnOriginalTextChanged;
+      Controls.Add(originalText);
+
+      // create converted text box
+      convertedText = new TextBox();
+      convertedText.Dock = DockStyle.Fill;
+      convertedText.Multiline = true;
+      convertedText.Height = 200;
+      convertedText.ScrollBars = ScrollBars.Vertical;
+      //convertedText.ReadOnly = true;
+      Controls.Add(convertedText);
+
+
       InitializeComponent();
       //1. Define key combinations
       var fullScrCombi = Combination.FromString("Control+Shift+F");
