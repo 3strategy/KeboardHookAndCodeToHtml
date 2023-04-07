@@ -28,13 +28,8 @@
     /// </summary>
     private void InitializeComponent()
     {
-      backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
       checkBoxLineNumbers = new CheckBox();
       SuspendLayout();
-      // 
-      // backgroundWorker1
-      // 
-      backgroundWorker1.DoWork += backgroundWorker1_DoWork;
       // 
       // checkBoxLineNumbers
       // 
@@ -61,8 +56,6 @@
     }
 
     #endregion
-
-    private System.ComponentModel.BackgroundWorker backgroundWorker1;
     private CheckBox checkBoxLineNumbers;
   }
 }

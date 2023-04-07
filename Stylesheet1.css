@@ -1,0 +1,93 @@
+﻿/*##############
+ CODE COLORING classes for SwiftlyCodeHtml
+    This is an example of the CSS that the converted HTML code relies on.
+    ############*/
+.swiftly {
+    direction: ltr;
+    font-family: monaco,Consolas,LucidaConsole,monospace;
+    background-color: #1E1E1E;
+    font-size: 18px;
+    color: #dfdfdf;
+}
+
+.swiftAns {
+    direction: ltr;
+    font-family: monaco,Consolas,LucidaConsole,monospace;
+    background-color: #636465;
+    font-size: 18px;
+    color: #dfdfdf;
+}
+
+    .swiftly .method, .swiftAns .method {
+        color: #DCDCAA;
+    }
+
+    .swiftly .class, .swiftAns .class {
+        color: #4EC9B0;
+    }
+
+    .swiftly .keyword, .swiftAns .keyword {
+        color: #569cd6;
+    }
+
+    .swiftly .string, .swiftAns .string {
+        color: #ce9178;
+    }
+
+    .swiftly .numericLiteral, .swiftAns .numericLiteral {
+        color: #b8d7a3;
+    }
+
+    .swiftly .control, .swiftAns .control {
+        color: #C586C0;
+    }
+
+    .swiftly .namespace, .swiftAns .namespace {
+        color: #dfdfdf;
+    }
+
+    .swiftly .punctuation, .swiftAns .punctuation {
+        color: #dfdfdf;
+    }
+
+    .swiftly .operator, .swiftAns .operator {
+        color: #dfdfdf;
+    }
+
+    .swiftly .localName, .swiftAns .localName {
+        color: #9CDCFE;
+    }
+
+    .swiftly .parameter, .swiftAns .parameter {
+        color: #9CDCFE;
+    }
+
+    .swiftly .code_highlight, .swiftAns .code_highlight {
+        background-color: #395929;
+    }
+
+    /*table {
+        
+    }*/
+
+    .swiftly Table, .swiftAns Table {
+        padding-top: -10px !important;
+        white-space: pre;
+    }
+
+    .swiftly Table, th, td, tr, .swiftAns Table, th, td, tr {
+        border: none !important;
+        padding: 0px !important;
+        font-size: 18px !important;
+    }
+
+.swiftly .line_no::before, .swifAns .line_no::before {
+    content: attr(line_no);
+    color: white;
+    width: 0.2em;
+}
+
+.swiftly .code_column, .swifAns .code_column {
+    padding-left: 5px;
+    color: #dfdfdf;
+}

@@ -1,11 +1,12 @@
 ﻿using Gma.System.MouseKeyHook;
 using CsharpToColouredHTML.Core;
+//the above are using nugets that have available GITs and documentation 
 
 namespace KeboardHookAndCodeToHtml
 {
   public partial class CopyConvert : Form
   {
-    private TextBox originalText;
+    private TextBox originalText; // These texts can be ignored. The app should normally be used without the GUI.
     private TextBox convertedText;
     public CopyConvert()
     {
@@ -26,8 +27,8 @@ namespace KeboardHookAndCodeToHtml
       originalText.ScrollBars = ScrollBars.Vertical;
       originalText.Text = "To use this just copy the code you need (Ctrl+C), then press Ctrl+Shift+C to convert." +
         "\r\nThe original clipboard code will appear here, and the HTML code will appear below" +
-        "\r\nThe HTML is automatically copied to the clipboard\r\n" +
-        "You may use these shortcuts with this app in the background";
+        "\r\nThe HTML is automatically copied to the clipboard\r\n\r\n" +
+        "You may use the conversion shortcut while this app is in the background.\r\nFeel free to minimize this window";
       Controls.Add(originalText);
 
       InitializeComponent();
@@ -51,28 +52,23 @@ namespace KeboardHookAndCodeToHtml
     }
     void CopyConvertToHtml()
     {
-      originalText.Text = Clipboard.GetText();
-
+      originalText.Text = Clipboard.GetText(); //get clipboard content
       HTMLEmitterSettings settings;
-      settings = new HTMLEmitterSettings().DisableIframe();//.DisableLineNumbers();
       if (checkBoxLineNumbers.Checked)
         settings = new HTMLEmitterSettings().DisableIframe();
       else
         settings = new HTMLEmitterSettings().DisableIframe().DisableLineNumbers();
-      //This was not recently tested without the line numbers (which took alot of css effort to get to work)
+      //This was not recently tested without the line numbers
       string convertedHtml = new CsharpColourer().ProcessSourceCode(originalText.Text, new HTMLEmitter(settings));
+      //update the converted html to include some relevant tags to make it work
+      //properly inside campus site.
       int i = convertedHtml.IndexOf("<pre class=\"background\"") + 24;
       string embeddedHtml = "<div class=\"code, swiftly\"><pre><code>" + convertedHtml.Substring(i, convertedHtml.Length - i);
       i = embeddedHtml.IndexOf("</pre>");
       embeddedHtml = embeddedHtml.Substring(0, i) + "</code></pre></div>";
 
       convertedText.Text = embeddedHtml;
-      Clipboard.SetText(embeddedHtml);
-    }
-
-    private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
-    {
-
+      Clipboard.SetText(embeddedHtml); //save the conversion result back to the clipboard
     }
   }
 }
