@@ -1,13 +1,5 @@
 ﻿using Gma.System.MouseKeyHook;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+using CsharpToColouredHTML.Core;
 
 namespace KeboardHookAndCodeToHtml
 {
@@ -17,8 +9,14 @@ namespace KeboardHookAndCodeToHtml
     private TextBox convertedText;
     public CopyConvert()
     {
-      //InitializeComponent();
-      Text = "Clipboard Converter";
+      // create converted text box
+      convertedText = new TextBox();
+      convertedText.Dock = DockStyle.Bottom;
+      convertedText.Multiline = true;
+      convertedText.Height = 200;
+      convertedText.ScrollBars = ScrollBars.Vertical;
+      //convertedText.ReadOnly = true;
+      Controls.Add(convertedText);
 
       // create original text box
       originalText = new TextBox();
@@ -26,18 +24,11 @@ namespace KeboardHookAndCodeToHtml
       originalText.Multiline = true;
       originalText.Height = 200;
       originalText.ScrollBars = ScrollBars.Vertical;
-      //originalText.TextChanged += OnOriginalTextChanged;
+      originalText.Text = "To use this just copy the code you need (Ctrl+C), then press Ctrl+Shift+C to convert." +
+        "\r\nThe original clipboard code will appear here, and the HTML code will appear below" +
+        "\r\nThe HTML is automatically copied to the clipboard\r\n" +
+        "You may use these shortcuts with this app in the background";
       Controls.Add(originalText);
-
-      // create converted text box
-      convertedText = new TextBox();
-      convertedText.Dock = DockStyle.Fill;
-      convertedText.Multiline = true;
-      convertedText.Height = 200;
-      convertedText.ScrollBars = ScrollBars.Vertical;
-      //convertedText.ReadOnly = true;
-      Controls.Add(convertedText);
-
 
       InitializeComponent();
       //1. Define key combinations
@@ -60,7 +51,22 @@ namespace KeboardHookAndCodeToHtml
     }
     void CopyConvertToHtml()
     {
-      Console.WriteLine("You pressed Convert");
+      originalText.Text = Clipboard.GetText();
+
+      var settings = new HTMLEmitterSettings().DisableIframe();//.DisableLineNumbers();
+      string convertedHtml = new CsharpColourer().ProcessSourceCode(originalText.Text, new HTMLEmitter(settings));
+      int i = convertedHtml.IndexOf("<pre class=\"background\"") + 24;
+      string embeddedHtml = "<div class=\"code, swiftly\"><pre><code>" + convertedHtml.Substring(i, convertedHtml.Length - i);
+      i = embeddedHtml.IndexOf("</pre>");
+      embeddedHtml = embeddedHtml.Substring(0, i) + "</code></pre></div>";
+
+      convertedText.Text = embeddedHtml;
+      Clipboard.SetText(embeddedHtml);
+    }
+
+    private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+    {
+
     }
   }
 }

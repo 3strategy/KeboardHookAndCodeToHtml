@@ -28,12 +28,25 @@
     /// </summary>
     private void InitializeComponent()
     {
-      components = new System.ComponentModel.Container();
+      backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+      SuspendLayout();
+      // 
+      // backgroundWorker1
+      // 
+      backgroundWorker1.DoWork += backgroundWorker1_DoWork;
+      // 
+      // CopyConvert
+      // 
+      AutoScaleDimensions = new SizeF(7F, 15F);
       AutoScaleMode = AutoScaleMode.Font;
-      ClientSize = new Size(800, 450);
-      Text = "Form3";
+      ClientSize = new Size(800, 498);
+      Name = "CopyConvert";
+      Text = "Clipboard to Html";
+      ResumeLayout(false);
     }
 
     #endregion
+
+    private System.ComponentModel.BackgroundWorker backgroundWorker1;
   }
 }
