@@ -58,14 +58,15 @@ namespace KeboardHookAndCodeToHtml
         settings = new HTMLEmitterSettings().DisableIframe();
       else
         settings = new HTMLEmitterSettings().DisableIframe().DisableLineNumbers();
+      
       //This was not recently tested without the line numbers
       string convertedHtml = new CsharpColourer().ProcessSourceCode(originalText.Text, new HTMLEmitter(settings));
       //update the converted html to include some relevant tags to make it work
       //properly inside campus site.
       int i = convertedHtml.IndexOf("<pre class=\"background\"") + 24;
-      string embeddedHtml = "<div class=\"code, swiftly\"><pre><code>" + convertedHtml.Substring(i, convertedHtml.Length - i);
+      string embeddedHtml = "<div class=\"code, swiftly\"><pre>" + convertedHtml.Substring(i, convertedHtml.Length - i);
       i = embeddedHtml.IndexOf("</pre>");
-      embeddedHtml = embeddedHtml.Substring(0, i) + "</code></pre></div>";
+      embeddedHtml = embeddedHtml.Substring(0, i) + "</pre></div>";
 
       convertedText.Text = embeddedHtml;
       Clipboard.SetText(embeddedHtml); //save the conversion result back to the clipboard
