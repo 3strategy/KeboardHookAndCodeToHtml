@@ -64,7 +64,7 @@ namespace KeboardHookAndCodeToHtml
       //update the converted html to include some relevant tags to make it work
       //properly inside campus site.
       int i = convertedHtml.IndexOf("<pre class=\"background\"") + 24;
-      string embeddedHtml = "<div class=\"code, swiftly\"><pre>" + convertedHtml.Substring(i, convertedHtml.Length - i);
+      string embeddedHtml = "<div class=\"code swiftly\"><pre>" + convertedHtml.Substring(i, convertedHtml.Length - i);
       i = embeddedHtml.IndexOf("</pre>");
       embeddedHtml = embeddedHtml.Substring(0, i) + "</pre></div>";
 
