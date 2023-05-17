@@ -35,6 +35,7 @@ namespace KeboardHookAndCodeToHtml
       //1. Define key combinations
       var fullScrCombi = Combination.FromString("Control+Shift+F");
       var copyConvertPasteCombi = Combination.FromString("Control+Shift+C");
+      var copyConvertPasteCombi2 = Combination.FromString("Control+Shift+X");
 
       //2. Define actions
       Action actionConvert = CopyConvertToHtml;
@@ -44,7 +45,8 @@ namespace KeboardHookAndCodeToHtml
       var assignment = new Dictionary<Combination, Action>
       {
           {fullScrCombi, actionFullScreen},
-          {copyConvertPasteCombi, actionConvert}
+          {copyConvertPasteCombi, actionConvert},
+          {copyConvertPasteCombi2, actionConvert}
       };
 
       //4. Install listener
