@@ -1,5 +1,6 @@
 ﻿using Gma.System.MouseKeyHook;
 using CsharpToColouredHTML.Core;
+using System.Text.RegularExpressions;
 //the above are using nugets that have available GITs and documentation 
 
 namespace KeboardHookAndCodeToHtml
@@ -62,6 +63,7 @@ namespace KeboardHookAndCodeToHtml
                 settings = new HTMLEmitterSettings().DisableIframe().DisableLineNumbers();
 
             //This was not recently tested without the line numbers
+            originalText.Text = regexDotsToSpaces(originalText.Text);//fixed dots to spaces.
             string convertedHtml = new CsharpColourer().ProcessSourceCode(originalText.Text, new HTMLEmitter(settings));
             //update the converted html to include some relevant tags to make it work
             //properly inside campus site.
@@ -74,6 +76,15 @@ namespace KeboardHookAndCodeToHtml
             convertedText.Text = embeddedHtml;
             Clipboard.SetText(embeddedHtml); //save the conversion result back to the clipboard
         }
+
+        public string regexDotsToSpaces(string input)
+        {
+            string pattern = @"(\.{4})";
+            string replacement = "    ";
+            string result = Regex.Replace(input, pattern, replacement);
+            return result;
+        }
+
 
         private void button1_Click(object sender, EventArgs e)
         {
