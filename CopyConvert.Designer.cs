@@ -30,6 +30,7 @@
         {
             checkBoxLineNumbers = new CheckBox();
             chkSwiftAns = new CheckBox();
+            button1 = new Button();
             SuspendLayout();
             // 
             // checkBoxLineNumbers
@@ -54,11 +55,22 @@
             chkSwiftAns.Text = "format as Answer";
             chkSwiftAns.UseVisualStyleBackColor = true;
             // 
+            // button1
+            // 
+            button1.Location = new Point(559, 223);
+            button1.Name = "button1";
+            button1.Size = new Size(149, 23);
+            button1.TabIndex = 2;
+            button1.Text = "הכפתור של דורית";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
             // CopyConvert
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 498);
+            Controls.Add(button1);
             Controls.Add(chkSwiftAns);
             Controls.Add(checkBoxLineNumbers);
             Name = "CopyConvert";
@@ -70,5 +82,6 @@
         #endregion
         private CheckBox checkBoxLineNumbers;
         private CheckBox chkSwiftAns;
+        private Button button1;
     }
 }

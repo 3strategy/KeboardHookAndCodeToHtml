@@ -67,12 +67,17 @@ namespace KeboardHookAndCodeToHtml
             //properly inside campus site.
             int i = convertedHtml.IndexOf("<pre class=\"background\"") + 24;
             string swift = chkSwiftAns.Checked ? "swiftAns" : "swiftly"; //קביעת המחלקה בהתאם לסוף התוצר
-            string embeddedHtml = "<div class=\"code "+ swift + "\"><pre>" + convertedHtml.Substring(i, convertedHtml.Length - i);
+            string embeddedHtml = "<div class=\"code " + swift + "\"><pre>" + convertedHtml.Substring(i, convertedHtml.Length - i);
             i = embeddedHtml.IndexOf("</pre>");
             embeddedHtml = embeddedHtml.Substring(0, i) + "</pre></div>";
 
             convertedText.Text = embeddedHtml;
             Clipboard.SetText(embeddedHtml); //save the conversion result back to the clipboard
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            CopyConvertToHtml();
         }
     }
 }
