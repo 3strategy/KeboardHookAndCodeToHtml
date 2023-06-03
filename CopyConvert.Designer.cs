@@ -28,10 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             checkBoxLineNumbers = new CheckBox();
             chkSwiftAns = new CheckBox();
             button1 = new Button();
             chkAsQuestion = new CheckBox();
+            chkMakeAccordeon = new CheckBox();
+            toolTip1 = new ToolTip(components);
+            toolTip2 = new ToolTip(components);
             SuspendLayout();
             // 
             // checkBoxLineNumbers
@@ -74,13 +78,30 @@
             chkAsQuestion.Size = new Size(122, 19);
             chkAsQuestion.TabIndex = 3;
             chkAsQuestion.Text = "treat as a question";
+            toolTip1.SetToolTip(chkAsQuestion, "checking this will add header description with usual text and a label with an easy to replace אאאאאא question");
             chkAsQuestion.UseVisualStyleBackColor = true;
+            // 
+            // chkMakeAccordeon
+            // 
+            chkMakeAccordeon.AutoSize = true;
+            chkMakeAccordeon.Location = new Point(363, 249);
+            chkMakeAccordeon.Name = "chkMakeAccordeon";
+            chkMakeAccordeon.Size = new Size(160, 19);
+            chkMakeAccordeon.TabIndex = 4;
+            chkMakeAccordeon.Text = "Make Accordeon אקורדיון";
+            toolTip2.SetToolTip(chkMakeAccordeon, "This will turn your code into an accordeon and assign it a time based random");
+            chkMakeAccordeon.UseVisualStyleBackColor = true;
+            // 
+            // toolTip1
+            // 
+            toolTip1.Popup += toolTip1_Popup;
             // 
             // CopyConvert
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 498);
+            Controls.Add(chkMakeAccordeon);
             Controls.Add(chkAsQuestion);
             Controls.Add(button1);
             Controls.Add(chkSwiftAns);
@@ -96,5 +117,8 @@
         private CheckBox chkSwiftAns;
         private Button button1;
         private CheckBox chkAsQuestion;
+        private CheckBox chkMakeAccordeon;
+        private ToolTip toolTip1;
+        private ToolTip toolTip2;
     }
 }

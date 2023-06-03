@@ -72,9 +72,19 @@ namespace KeboardHookAndCodeToHtml
             string embeddedHtml = "<div class=\"code " + swift + "\"><pre>" + convertedHtml.Substring(i, convertedHtml.Length - i);
             i = embeddedHtml.IndexOf("</pre>");
             embeddedHtml = embeddedHtml.Substring(0, i) + "</pre></div>";
-            if (chkAsQuestion.Checked)
+            if (chkAsQuestion.Checked) //אחרי <label> הוספת טקסט לפני ותגית  
                 embeddedHtml = $"<div class=\"desc_header\">הביטו בקטע הקוד הבא, עקבו וענו מבלי להריץ במחשב:</div>" +
-                    $" \r\n {embeddedHtml}\r\n\r\n<multiplechoiceresponse>\r\n<label>אאאאאאאאאאאאאאאאא</label>\r\n<description/>\r\n";
+                    $"\r\n{embeddedHtml}\r\n\r\n<multiplechoiceresponse>\r\n<label>אאאאאאאאאאאאאאאאא</label>\r\n<description/>\r\n";
+
+
+            if (chkMakeAccordeon.Checked)
+            {   //support making code into accoreon directly.
+                string ans = chkAsQuestion.Checked ? "שאלה?????" : "תשובה:";
+                int nonce = DateTime.Now.Millisecond;
+                embeddedHtml = $"<button class=\"box_title\" aria-expanded=\"true\" " +
+                    $"onclick=\"toggle_visibility('topic{nonce}')\">{ans}</button>\r\n<div id=\"topic{nonce}\" class=\"box_content\">\r\n{embeddedHtml}\r\n</div>";
+            }
+
             convertedText.Text = embeddedHtml;
             Clipboard.SetText(embeddedHtml); //save the conversion result back to the clipboard
         }
@@ -91,6 +101,11 @@ namespace KeboardHookAndCodeToHtml
         private void button1_Click(object sender, EventArgs e)
         {
             CopyConvertToHtml();
+        }
+
+        private void toolTip1_Popup(object sender, PopupEventArgs e)
+        {
+
         }
     }
 }
