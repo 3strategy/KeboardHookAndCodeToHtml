@@ -31,6 +31,7 @@
             checkBoxLineNumbers = new CheckBox();
             chkSwiftAns = new CheckBox();
             button1 = new Button();
+            chkAsQuestion = new CheckBox();
             SuspendLayout();
             // 
             // checkBoxLineNumbers
@@ -65,11 +66,22 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
+            // chkAsQuestion
+            // 
+            chkAsQuestion.AutoSize = true;
+            chkAsQuestion.Location = new Point(188, 247);
+            chkAsQuestion.Name = "chkAsQuestion";
+            chkAsQuestion.Size = new Size(122, 19);
+            chkAsQuestion.TabIndex = 3;
+            chkAsQuestion.Text = "treat as a question";
+            chkAsQuestion.UseVisualStyleBackColor = true;
+            // 
             // CopyConvert
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 498);
+            Controls.Add(chkAsQuestion);
             Controls.Add(button1);
             Controls.Add(chkSwiftAns);
             Controls.Add(checkBoxLineNumbers);
@@ -83,5 +95,6 @@
         private CheckBox checkBoxLineNumbers;
         private CheckBox chkSwiftAns;
         private Button button1;
+        private CheckBox chkAsQuestion;
     }
 }

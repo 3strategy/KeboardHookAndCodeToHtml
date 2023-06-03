@@ -72,7 +72,9 @@ namespace KeboardHookAndCodeToHtml
             string embeddedHtml = "<div class=\"code " + swift + "\"><pre>" + convertedHtml.Substring(i, convertedHtml.Length - i);
             i = embeddedHtml.IndexOf("</pre>");
             embeddedHtml = embeddedHtml.Substring(0, i) + "</pre></div>";
-
+            if (chkAsQuestion.Checked)
+                embeddedHtml = $"<div class=\"desc_header\">הביטו בקטע הקוד הבא, עקבו וענו מבלי להריץ במחשב:</div>" +
+                    $" \r\n {embeddedHtml}\r\n\r\n<multiplechoiceresponse>\r\n<label>אאאאאאאאאאאאאאאאא</label>\r\n<description/>\r\n";
             convertedText.Text = embeddedHtml;
             Clipboard.SetText(embeddedHtml); //save the conversion result back to the clipboard
         }
