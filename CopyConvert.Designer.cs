@@ -36,6 +36,7 @@
             chkMakeAccordeon = new CheckBox();
             toolTip1 = new ToolTip(components);
             toolTip2 = new ToolTip(components);
+            chkOneLineFunction = new CheckBox();
             SuspendLayout();
             // 
             // checkBoxLineNumbers
@@ -96,11 +97,22 @@
             // 
             toolTip1.Popup += toolTip1_Popup;
             // 
+            // chkOneLineFunction
+            // 
+            chkOneLineFunction.AutoSize = true;
+            chkOneLineFunction.Location = new Point(18, 247);
+            chkOneLineFunction.Name = "chkOneLineFunction";
+            chkOneLineFunction.Size = new Size(129, 19);
+            chkOneLineFunction.TabIndex = 5;
+            chkOneLineFunction.Text = "{}one Line Function";
+            chkOneLineFunction.UseVisualStyleBackColor = true;
+            // 
             // CopyConvert
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 498);
+            Controls.Add(chkOneLineFunction);
             Controls.Add(chkMakeAccordeon);
             Controls.Add(chkAsQuestion);
             Controls.Add(button1);
@@ -120,5 +132,6 @@
         private CheckBox chkMakeAccordeon;
         private ToolTip toolTip1;
         private ToolTip toolTip2;
+        private CheckBox chkOneLineFunction;
     }
 }

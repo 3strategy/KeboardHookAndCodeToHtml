@@ -1,6 +1,7 @@
 ﻿using Gma.System.MouseKeyHook;
 using CsharpToColouredHTML.Core;
 using System.Text.RegularExpressions;
+using Microsoft.AspNetCore.Mvc;
 //the above are using nugets that have available GITs and documentation 
 
 namespace KeboardHookAndCodeToHtml
@@ -64,7 +65,16 @@ namespace KeboardHookAndCodeToHtml
 
             //This was not recently tested without the line numbers
             originalText.Text = regexDotsToSpaces(originalText.Text);//fixed dots to spaces.
-            string convertedHtml = new CsharpColourer().ProcessSourceCode(originalText.Text, new HTMLEmitter(settings));
+
+            string convertedHtml;
+            //format one line function signatures as functions
+            if (chkOneLineFunction.Checked)
+            {
+                convertedHtml = new CsharpColourer().ProcessSourceCode(originalText.Text+"{r;}", new HTMLEmitter(settings));
+                convertedHtml = Regex.Replace(convertedHtml, "{r;}", "");
+            }
+            else 
+                convertedHtml = new CsharpColourer().ProcessSourceCode(originalText.Text, new HTMLEmitter(settings));
             //update the converted html to include some relevant tags to make it work
             //properly inside campus site.
             int i = convertedHtml.IndexOf("<pre class=\"background\"") + 24;
