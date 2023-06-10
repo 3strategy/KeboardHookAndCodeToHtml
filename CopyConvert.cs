@@ -27,10 +27,13 @@ namespace KeboardHookAndCodeToHtml
             originalText.Multiline = true;
             originalText.Height = 200;
             originalText.ScrollBars = ScrollBars.Vertical;
-            originalText.Text = "To use this just copy the code you need (Ctrl+C), then press Ctrl+Shift+C to convert." +
+            originalText.Text = "To use this just copy the code you need (Ctrl+C), then press Ctrl+Win+C to convert." +
+                "\r\nOther trigger keys are Ctrl +Shift +X, Ctrl +Shift +C" +
               "\r\nThe original clipboard code will appear here, and the HTML code will appear below" +
               "\r\nThe HTML is automatically copied to the clipboard\r\n\r\n" +
-              "You may use the conversion shortcut while this app is in the background.\r\nFeel free to minimize this window";
+              "You may use the conversion shortcut while this app is in the background.\r\nFeel free to minimize this window" +
+              "\r\n\r\nCreating accordions for answers is now easier by checking the Make Accordeon." +
+              "\r\nFormat as answer should also be selected if it's an answer";
             Controls.Add(originalText);
 
             InitializeComponent();
@@ -38,7 +41,7 @@ namespace KeboardHookAndCodeToHtml
             var fullScrCombi = Combination.FromString("Control+Shift+F");
             var copyConvertPasteCombi = Combination.FromString("Control+Shift+C");
             var copyConvertPasteCombi2 = Combination.FromString("Control+Shift+X");
-
+            var copyConvertPasteCombi3 = Combination.FromString("Control+LWin+C");
             //2. Define actions
             Action actionConvert = CopyConvertToHtml;
             Action actionFullScreen = () => { Console.WriteLine("You Pressed FULL SCREEN"); };
@@ -48,7 +51,8 @@ namespace KeboardHookAndCodeToHtml
       {
           {fullScrCombi, actionFullScreen},
           {copyConvertPasteCombi, actionConvert},
-          {copyConvertPasteCombi2, actionConvert}
+          {copyConvertPasteCombi2, actionConvert},
+          {copyConvertPasteCombi3, actionConvert}
       };
 
             //4. Install listener
