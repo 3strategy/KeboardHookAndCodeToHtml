@@ -111,14 +111,12 @@
             // JavaIt
             // 
             JavaIt.AutoSize = true;
-            JavaIt.Checked = true;
-            JavaIt.CheckState = CheckState.Checked;
             JavaIt.Location = new Point(562, 251);
             JavaIt.Name = "JavaIt";
             JavaIt.Size = new Size(58, 19);
             JavaIt.TabIndex = 6;
             JavaIt.Text = "Java it";
-            JavaIt.UseVisualStyleBackColor = true;
+            JavaIt.UseVisualStyleBackColor = false;
             // 
             // CopyConvert
             // 
