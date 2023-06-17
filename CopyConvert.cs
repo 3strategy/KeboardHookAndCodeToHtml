@@ -67,17 +67,22 @@ namespace KeboardHookAndCodeToHtml
             else
                 settings = new HTMLEmitterSettings().DisableIframe().DisableLineNumbers();
 
-            //This was not recently tested without the line numbers
+
+            //Remove .... dots
             originalText.Text = regexDotsToSpaces(originalText.Text);//fixed dots to spaces.
+
+            //Convert to Java
+            if (JavaIt.Checked)
+                originalText.Text = regexToJava(originalText.Text);
 
             string convertedHtml;
             //format one line function signatures as functions
             if (chkOneLineFunction.Checked)
             {
-                convertedHtml = new CsharpColourer().ProcessSourceCode(originalText.Text+"{r;}", new HTMLEmitter(settings));
+                convertedHtml = new CsharpColourer().ProcessSourceCode(originalText.Text + "{r;}", new HTMLEmitter(settings));
                 convertedHtml = Regex.Replace(convertedHtml, "{r;}", "");
             }
-            else 
+            else
                 convertedHtml = new CsharpColourer().ProcessSourceCode(originalText.Text, new HTMLEmitter(settings));
             //update the converted html to include some relevant tags to make it work
             //properly inside campus site.
@@ -111,6 +116,31 @@ namespace KeboardHookAndCodeToHtml
             return result;
         }
 
+        public string regexToJava(string input)
+        {
+            //input = Regex.Replace(input, "\r\n                    {", " {");
+            //input = Regex.Replace(input, "\r\n                {", " {");
+            //input = Regex.Replace(input, "\r\n            {", " {");
+            //input = Regex.Replace(input, "\r\n        {", " {");
+            //input = Regex.Replace(input, "\r\n    {", " {");
+            //input = Regex.Replace(input, "\r\n{", " {");
+            input = input.Replace("\r\n                    {", " {");
+            input = input.Replace("\r\n                {", " {");
+            input = input.Replace("\r\n            {", " {");
+            input = input.Replace("\r\n        {", " {");
+            input = input.Replace("\r\n    {", " {");
+            input = input.Replace("\r\n{", " {");
+            input = input.Replace("Console.WriteLine", "System.out.println");
+            input = input.Replace("Console.Write", "System.out.print");
+            input = input.Replace("int.Parse(Console.ReadLine())", "input.nextInt()");
+            input = input.Replace("double.Parse(Console.ReadLine())", "input.nextDouble()");
+            input = input.Replace("Console.ReadLine()", "input.next()");
+            input = input.Replace("bool", "boolean");
+
+            input = Regex.Replace(input, @"(void|string|boolean|int|double|char|public|static)\s+([A-Z])", m => $"{m.Groups[1]} {m.Groups[2].Value.ToLower()}");
+
+            return input;
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {

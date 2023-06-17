@@ -37,6 +37,7 @@
             toolTip1 = new ToolTip(components);
             toolTip2 = new ToolTip(components);
             chkOneLineFunction = new CheckBox();
+            JavaIt = new CheckBox();
             SuspendLayout();
             // 
             // checkBoxLineNumbers
@@ -107,11 +108,24 @@
             chkOneLineFunction.Text = "{}one Line Function";
             chkOneLineFunction.UseVisualStyleBackColor = true;
             // 
+            // JavaIt
+            // 
+            JavaIt.AutoSize = true;
+            JavaIt.Checked = true;
+            JavaIt.CheckState = CheckState.Checked;
+            JavaIt.Location = new Point(562, 251);
+            JavaIt.Name = "JavaIt";
+            JavaIt.Size = new Size(58, 19);
+            JavaIt.TabIndex = 6;
+            JavaIt.Text = "Java it";
+            JavaIt.UseVisualStyleBackColor = true;
+            // 
             // CopyConvert
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 498);
+            Controls.Add(JavaIt);
             Controls.Add(chkOneLineFunction);
             Controls.Add(chkMakeAccordeon);
             Controls.Add(chkAsQuestion);
@@ -133,5 +147,6 @@
         private ToolTip toolTip1;
         private ToolTip toolTip2;
         private CheckBox chkOneLineFunction;
+        private CheckBox JavaIt;
     }
 }
