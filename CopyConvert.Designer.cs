@@ -38,6 +38,7 @@
             toolTip2 = new ToolTip(components);
             chkOneLineFunction = new CheckBox();
             JavaIt = new CheckBox();
+            JavaBrackets = new CheckBox();
             SuspendLayout();
             // 
             // checkBoxLineNumbers
@@ -64,7 +65,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(559, 223);
+            button1.Location = new Point(562, 219);
             button1.Name = "button1";
             button1.Size = new Size(149, 23);
             button1.TabIndex = 2;
@@ -75,7 +76,7 @@
             // chkAsQuestion
             // 
             chkAsQuestion.AutoSize = true;
-            chkAsQuestion.Location = new Point(188, 247);
+            chkAsQuestion.Location = new Point(186, 247);
             chkAsQuestion.Name = "chkAsQuestion";
             chkAsQuestion.Size = new Size(122, 19);
             chkAsQuestion.TabIndex = 3;
@@ -86,7 +87,7 @@
             // chkMakeAccordeon
             // 
             chkMakeAccordeon.AutoSize = true;
-            chkMakeAccordeon.Location = new Point(363, 249);
+            chkMakeAccordeon.Location = new Point(364, 247);
             chkMakeAccordeon.Name = "chkMakeAccordeon";
             chkMakeAccordeon.Size = new Size(160, 19);
             chkMakeAccordeon.TabIndex = 4;
@@ -101,7 +102,7 @@
             // chkOneLineFunction
             // 
             chkOneLineFunction.AutoSize = true;
-            chkOneLineFunction.Location = new Point(18, 247);
+            chkOneLineFunction.Location = new Point(20, 247);
             chkOneLineFunction.Name = "chkOneLineFunction";
             chkOneLineFunction.Size = new Size(129, 19);
             chkOneLineFunction.TabIndex = 5;
@@ -111,18 +112,29 @@
             // JavaIt
             // 
             JavaIt.AutoSize = true;
-            JavaIt.Location = new Point(562, 251);
+            JavaIt.Location = new Point(562, 247);
             JavaIt.Name = "JavaIt";
             JavaIt.Size = new Size(58, 19);
             JavaIt.TabIndex = 6;
             JavaIt.Text = "Java it";
             JavaIt.UseVisualStyleBackColor = false;
             // 
+            // JavaBrackets
+            // 
+            JavaBrackets.AutoSize = true;
+            JavaBrackets.Location = new Point(626, 247);
+            JavaBrackets.Name = "JavaBrackets";
+            JavaBrackets.Size = new Size(95, 19);
+            JavaBrackets.TabIndex = 7;
+            JavaBrackets.Text = "Java Brackets";
+            JavaBrackets.UseVisualStyleBackColor = true;
+            // 
             // CopyConvert
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 498);
+            Controls.Add(JavaBrackets);
             Controls.Add(JavaIt);
             Controls.Add(chkOneLineFunction);
             Controls.Add(chkMakeAccordeon);
@@ -146,5 +158,6 @@
         private ToolTip toolTip2;
         private CheckBox chkOneLineFunction;
         private CheckBox JavaIt;
+        private CheckBox JavaBrackets;
     }
 }

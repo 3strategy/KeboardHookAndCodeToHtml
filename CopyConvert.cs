@@ -72,6 +72,8 @@ namespace KeboardHookAndCodeToHtml
             originalText.Text = regexDotsToSpaces(originalText.Text);//fixed dots to spaces.
 
             //Convert to Java
+            if (JavaBrackets.Checked)
+                originalText.Text = regextJavaBrackets(originalText.Text);
             if (JavaIt.Checked)
                 originalText.Text = regexToJava(originalText.Text);
 
@@ -116,6 +118,17 @@ namespace KeboardHookAndCodeToHtml
             return result;
         }
 
+        public string regextJavaBrackets(string input)
+        {
+            input = input.Replace("\r\n                    {", " {");
+            input = input.Replace("\r\n                {", " {");
+            input = input.Replace("\r\n            {", " {");
+            input = input.Replace("\r\n        {", " {");
+            input = input.Replace("\r\n    {", " {");
+            input = input.Replace("\r\n{", " {");
+            return input;
+        }
+
         public string regexToJava(string input)
         {
             //input = Regex.Replace(input, "\r\n                    {", " {");
@@ -124,21 +137,19 @@ namespace KeboardHookAndCodeToHtml
             //input = Regex.Replace(input, "\r\n        {", " {");
             //input = Regex.Replace(input, "\r\n    {", " {");
             //input = Regex.Replace(input, "\r\n{", " {");
-            input = input.Replace("\r\n                    {", " {");
-            input = input.Replace("\r\n                {", " {");
-            input = input.Replace("\r\n            {", " {");
-            input = input.Replace("\r\n        {", " {");
-            input = input.Replace("\r\n    {", " {");
-            input = input.Replace("\r\n{", " {");
+
             input = input.Replace("Console.WriteLine", "System.out.println");
             input = input.Replace("Console.Write", "System.out.print");
             input = input.Replace("int.Parse(Console.ReadLine())", "input.nextInt()");
             input = input.Replace("double.Parse(Console.ReadLine())", "input.nextDouble()");
             input = input.Replace("Console.ReadLine()", "input.next()");
             input = input.Replace("bool", "boolean");
-
-            input = Regex.Replace(input, @"(void|string|boolean|int|double|char|public|static)\s+([A-Z])", m => $"{m.Groups[1]} {m.Groups[2].Value.ToLower()}");
-
+            input = input.Replace("string", "String");
+            input = Regex.Replace(input, @"(void|String|boolean|int|double|char|static)\s+([A-Z])", m => $"{m.Groups[1]} {m.Groups[2].Value.ToLower()}");
+            //replace . function calls.
+            input = Regex.Replace(input, @"\.+([A-Z])", m => $"{m.Value.ToLower()}");
+            //replace function calls to lower case functions.
+            input = Regex.Replace(input, @"(\b[A-Z])(\w*)\(", m => $"{m.Groups[1].Value.ToLower()}{m.Groups[2].Value}(");
             return input;
         }
 
