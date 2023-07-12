@@ -150,6 +150,11 @@ namespace KeboardHookAndCodeToHtml
             input = Regex.Replace(input, @"\.+([A-Z])", m => $"{m.Value.ToLower()}");
             //replace function calls to lower case functions.
             input = Regex.Replace(input, @"(\b[A-Z])(\w*)\(", m => $"{m.Groups[1].Value.ToLower()}{m.Groups[2].Value}(");
+            input = input.Replace("int.minValue", "Integer.MIN_VALUE");
+            input = input.Replace("int.maxValue", "Integer.MAX_VALUE");
+            input = input.Replace("next", "nextInt");
+            input = input.Replace("nextInt(min, max)", "nextInt(max + 1 - min) + min");
+            input = input.Replace("nextInt(min,max)", "nextInt(max + 1 - min) + min");
             return input;
         }
 
