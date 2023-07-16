@@ -112,9 +112,14 @@ namespace KeboardHookAndCodeToHtml
 
         public string regexDotsToSpaces(string input)
         {
+            input = input.Replace("…………", "          "); //12
+            input = input.Replace("……..", "       "); //8 = 6+2
+            input = input.Replace("….", "    ");//4 = 3+1
+
             string pattern = @"(\.{4})";
             string replacement = "    ";
             string result = Regex.Replace(input, pattern, replacement);
+            
             return result;
         }
 
