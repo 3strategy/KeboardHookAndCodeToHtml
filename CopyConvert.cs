@@ -125,13 +125,8 @@ namespace KeboardHookAndCodeToHtml
 
         public string regextJavaBrackets(string input)
         {
-            input = input.Replace("\r\n                    {", " {");
-            input = input.Replace("\r\n                {", " {");
-            input = input.Replace("\r\n            {", " {");
-            input = input.Replace("\r\n        {", " {");
-            input = input.Replace("\r\n    {", " {");
-            input = input.Replace("\r\n{", " {");
-            return input;
+            input = Regex.Replace(input, @"(\s*//.*)\r\n\s*{", " { $1"); // replace for line with comments.
+            return Regex.Replace(input, @"(\s*//.*|\s*)\r\n\s*{", "$1 {"); // replace all the rest
         }
 
         public string regexToJava(string input)
