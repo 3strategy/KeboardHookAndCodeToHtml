@@ -72,10 +72,11 @@ namespace KeboardHookAndCodeToHtml
             originalText.Text = regexDotsToSpaces(originalText.Text);//fixed dots to spaces.
 
             //Convert to Java
-            if (JavaBrackets.Checked)
-                originalText.Text = regextJavaBrackets(originalText.Text);
             if (JavaIt.Checked)
                 originalText.Text = regexToJava(originalText.Text);
+            //Convert to Java brackets
+            if (JavaBrackets.Checked)
+                originalText.Text = regextJavaBrackets(originalText.Text);
 
             string convertedHtml;
             //format one line function signatures as functions
@@ -155,7 +156,17 @@ namespace KeboardHookAndCodeToHtml
             input = input.Replace("next", "nextInt");
             input = input.Replace("nextInt(min, max)", "nextInt(max + 1 - min) + min");
             input = input.Replace("nextInt(min,max)", "nextInt(max + 1 - min) + min");
+            input = convertBaseToSuper(input);
+            input = convertInheritanceToJava(input);
             return input;
+        }
+        public string convertBaseToSuper(string input)
+        {
+            return Regex.Replace(input, @"\s*:\s*base\((.*?)\)\s*{", m => ") {\r\n        super(" + m.Groups[1].Value + ");");
+        }
+        public string convertInheritanceToJava(string input)
+        {
+            return Regex.Replace(input, @"(\bclass\s+[A-Z]\w*)\s*:\s*([A-Z]\w*)", "$1 extends $2");
         }
 
         private void button1_Click(object sender, EventArgs e)
