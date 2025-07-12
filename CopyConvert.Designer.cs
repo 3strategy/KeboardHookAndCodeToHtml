@@ -39,6 +39,7 @@
             chkOneLineFunction = new CheckBox();
             JavaIt = new CheckBox();
             JavaBrackets = new CheckBox();
+            textBox1 = new TextBox();
             SuspendLayout();
             // 
             // checkBoxLineNumbers
@@ -112,16 +113,21 @@
             // JavaIt
             // 
             JavaIt.AutoSize = true;
+            JavaIt.Checked = true;
+            JavaIt.CheckState = CheckState.Checked;
             JavaIt.Location = new Point(562, 247);
             JavaIt.Name = "JavaIt";
             JavaIt.Size = new Size(58, 19);
             JavaIt.TabIndex = 6;
             JavaIt.Text = "Java it";
             JavaIt.UseVisualStyleBackColor = false;
+            JavaIt.CheckedChanged += JavaIt_CheckedChanged;
             // 
             // JavaBrackets
             // 
             JavaBrackets.AutoSize = true;
+            JavaBrackets.Checked = true;
+            JavaBrackets.CheckState = CheckState.Checked;
             JavaBrackets.Location = new Point(626, 247);
             JavaBrackets.Name = "JavaBrackets";
             JavaBrackets.Size = new Size(95, 19);
@@ -129,11 +135,19 @@
             JavaBrackets.Text = "Java Brackets";
             JavaBrackets.UseVisualStyleBackColor = true;
             // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(366, 275);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(100, 23);
+            textBox1.TabIndex = 8;
+            // 
             // CopyConvert
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 498);
+            Controls.Add(textBox1);
             Controls.Add(JavaBrackets);
             Controls.Add(JavaIt);
             Controls.Add(chkOneLineFunction);
@@ -159,5 +173,6 @@
         private CheckBox chkOneLineFunction;
         private CheckBox JavaIt;
         private CheckBox JavaBrackets;
+        private TextBox textBox1;
     }
 }

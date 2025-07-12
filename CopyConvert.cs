@@ -120,7 +120,7 @@ namespace KeboardHookAndCodeToHtml
             string pattern = @"(\.{4})";
             string replacement = "    ";
             string result = Regex.Replace(input, pattern, replacement);
-            
+
             return result;
         }
 
@@ -141,9 +141,9 @@ namespace KeboardHookAndCodeToHtml
 
             input = input.Replace("Console.WriteLine", "System.out.println");
             input = input.Replace("Console.Write", "System.out.print");
-            input = input.Replace("int.Parse(Console.ReadLine())", "input.nextInt()");
+
             input = input.Replace("double.Parse(Console.ReadLine())", "input.nextDouble()");
-            input = input.Replace("Console.ReadLine()", "input.next()");
+
             input = input.Replace("bool", "boolean");
             input = input.Replace("string", "String");
             input = Regex.Replace(input, @"(void|String|boolean|int|double|char|static)\s+([A-Z])", m => $"{m.Groups[1]} {m.Groups[2].Value.ToLower()}");
@@ -156,8 +156,20 @@ namespace KeboardHookAndCodeToHtml
             input = input.Replace("next", "nextInt");
             input = input.Replace("nextInt(min, max)", "nextInt(max + 1 - min) + min");
             input = input.Replace("nextInt(min,max)", "nextInt(max + 1 - min) + min");
+            input = input.Replace("int.parse(Console.readLine())", "input.nextInt()");
+            input = input.Replace("Console.ReadLine()", "input.next()");
+            input = input.Replace("public static void main()", "public static void main(String[] args)");
+            input = input.Replace("static void main()", "public static void main(String[] args)");
+            input = input.Replace("void main(string[] args)", "void main(String[] args)");
             input = convertBaseToSuper(input);
             input = convertInheritanceToJava(input);
+            if (input.Substring(0,6) == "public")
+            {
+
+                int n = input.IndexOf(" args)\r\n{\r\n");
+                input = input.Replace(" args)\r\n{\r\n", " args) {\r\n    Scanner input = new Scanner(System.in);\r\n");
+                input = "import java.util.Scanner;\r\n\r\npublic class Main {\r\n" + input;
+            }
             return input;
         }
         public string convertBaseToSuper(string input)
@@ -175,6 +187,16 @@ namespace KeboardHookAndCodeToHtml
         }
 
         private void toolTip1_Popup(object sender, PopupEventArgs e)
+        {
+
+        }
+
+        private void JavaIt_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
         {
 
         }
